@@ -8,14 +8,14 @@ const areaTriangulo = (base, altura) => {
 const areaCirculo = (radio) => {
   return PI * radio * radio;
 };
-const areaRectangulo = (base, altura) => {
-  return base * altura;
+const areaRectangulo = (baseR, alturaR) => {
+  return baseR * alturaR;
 };
 
 let repetir = true;
 while (repetir) {
   let figura = prompt(
-    "Elige una de las siguientes figuras: Para cuadrado ingresa C, para triangulo ingresa T, para circulo ingresa CI, para rectangulo ingresa R "
+    "Elige una de las siguientes figuras para calcular su area: Para cuadrado ingresa C, para triangulo ingresa T, para circulo ingresa CI, para rectangulo ingresa R "
   );
   let noEsValido = true;
   let resultado = 0;
@@ -49,12 +49,30 @@ while (repetir) {
       break;
 
     case "CI":
-      prompt("Escribe su radio");
+      while (noEsValido) {
+        let radio = parseInt(prompt("Escribe su radio"), 10);
+        if (radio > 0) {
+          resultado = areaCirculo(radio);
+          noEsValido = false;
+        } else {
+          alert("Debe ingresar un valor mayor que cero");
+        }
+      }
+
       break;
 
     case "R":
-      prompt("Escribe la medida de su base");
-      prompt("Escribe la medida de su altura");
+      while (noEsValido) {
+        let baseR = parseInt(prompt("Escribe la medida de su base"), 10);
+        let alturaR = parseInt(prompt("Escribe la medida de su altura"), 10);
+        if (baseR && alturaR > 0) {
+          resultado = areaRectangulo(baseR, alturaR);
+          noEsValido = false;
+        } else {
+          alert("Debe ingresar un valor mayor que cero");
+        }
+      }
+
       break;
   }
 
@@ -63,4 +81,7 @@ while (repetir) {
   let continua = prompt("Si quiere calcular otra area ingrese S");
 
   if (continua != "S" && continua != "s") repetir = false;
+  else {
+    alert("Adios :)");
+  }
 }
